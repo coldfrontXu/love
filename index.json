@@ -27,16 +27,14 @@
 //解析接口
 
 "parses":[
-{"name":"聚合01","type":3,"url":"Demo"},
-{"name":"并发02","type":2,"url":"Parallel"},
-{"name":"轮询03","type":2,"url":"Sequence"},
-{"name":"解析04","type":1,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析05","type":0,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析06","type":0,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析07","type":1,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析08","type":1,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析09","type":0,"url":"https://jx.jsonplayer.com/player/?url="},
-{"name":"解析10","type":0,"url":"https://jx.jsonplayer.com/player/?url="}],
+
+{"name":"综合/B站","type":0,"url":"https://jx.jsonplayer.com/player/?url="},
+{"name":"爱豆","type":0,"url":"https://jx.aidouer.net/?url="},
+{"name":"虾米","type":0,"url":"https://jx.xmflv.com/?url="},
+{"name":"OK解析","type":0,"url":"https://okjx.cc/?url="},
+{"name":"夜幕01","type":0,"url":"https://www.yemu.xyz/v/d.php?url="},
+{"name":"盘古","type":0,"url":"https://www.pangujiexi.cc/jiexi.php?url="},
+{"name":"4K解析","type":0,"url":"https://jx.4kdv.com/?url="}],
 "flags": ["youku","qq","iqiyi","qiyi","letv","sohu","tudou","pptv","mgtv","wasu","bilibili","duoduozy","renrenmi"],
 
 //jar+壁纸
