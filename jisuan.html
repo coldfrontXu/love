@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1 style="text-align: center;">仿型和直圈计算</h1>
+        <h2>仿型计算</h2>
+        <div id="fang">
+            <div style="margin: 30px">
+                <span style="font-size: 25px">体积：</span>
+                <input type="text" id="V" placeholder="仿型的重量" style="font-size: 25px">
+            </div>
+            <div>
+            <span style="font-size: 25px;margin-left:35px">多报的重量(百分之多少,填小数)：</span>
+                <input type="text" id="zeng" placeholder="多报百分之多少" style="font-size: 25px">
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">锻件重量：</span><span id="duanObj" style="font-size: 25px">10</span>
+                <span style="font-size: 25px;margin-left:35px">多报锻件重量：</span><span id="DuanObj" style="font-size: 25px">10</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">下料重量：</span><span id="xiaObj" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报下料重量：</span><span id="XiaObj" style="font-size: 25px">20</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">消耗重量：</span><span id="xiaoObj" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报消耗重量：</span><span id="XiaoObj" style="font-size: 25px">20</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">料芯重量：</span><span id="liaoObj" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报料芯重量：</span><span id="LiaoObj" style="font-size: 25px">20</span>
+            </div>
+        </div>
+        <div>
+            <button style="margin: 30px;font-size: 20px" onclick="doFang()">仿型计算</button>
+        </div>
+        </div>
+        
+        <h2>直圈计算</h2>
+        <div id="zhi">
+            <div style="margin: 30px">
+                <span style="font-size: 25px">外径：</span>
+                <input type="text" id="D" placeholder="直圈的外径" style="font-size: 25px">
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">内径：</span>
+                <input type="text" id="d" placeholder="直圈的内径" style="font-size: 25px">
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">高度：</span>
+                <input type="text" id="H" placeholder="直圈的高度" style="font-size: 25px">
+            </div>
+            <div>
+            <span style="font-size: 25px;margin-left:35px">多报的重量(百分之多少,填小数)：</span>
+                <input type="text" id="Fzeng" placeholder="多报百分之多少" style="font-size: 25px">
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">锻件重量：</span><span id="fduan" style="font-size: 25px">10</span>
+                <span style="font-size: 25px;margin-left:35px">多报锻件重量：</span><span id="Fduan" style="font-size: 25px">10</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">下料重量：</span><span id="fxia" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报下料重量：</span><span id="Fxia" style="font-size: 25px">20</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">消耗重量：</span><span id="fxiao" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报消耗重量：</span><span id="Fxiao" style="font-size: 25px">20</span>
+            </div>
+            <div style="margin: 30px">
+                <span style="font-size: 25px">料芯重量：</span><span id="fliao" style="font-size: 25px">20</span>
+                <span style="font-size: 25px;margin-left:35px">多报料芯重量：</span><span id="Fliao" style="font-size: 25px">20</span>
+            </div>
+            <div>
+                <button style="margin: 30px;font-size: 20px" onclick="doZhi()">直圈计算</button>
+            </div>
+        </div>
+        <script>
+            function doFang() {
+                //获取体积的值，根据公式得出锻件的实际值
+                let result = Number((Number(document.getElementById("V").value) * 0.00000785).toFixed(12));
+             
+                //锻件重量 保留一位小数
+                let duanM = Number(result.toFixed(1));
+                //下料重量 保留一位小数
+                let xiaM = Number((result*1.06).toFixed(12)).toFixed(1);
+                //消耗重量 保留一位小数
+                let xiaoM = Number((result*(1.06*1.03).toFixed(12))).toFixed(1);
+                //料芯重量，保留一位小数
+                let liaoM = Number((duanM * 0.03).toFixed(12)).toFixed(1);
+                document.getElementById("duanObj").textContent = duanM;
+                document.getElementById("xiaObj").textContent = xiaM;
+                document.getElementById("xiaoObj").textContent = xiaoM;
+                document.getElementById("liaoObj").textContent = liaoM;
+                //获取新增的数据
+                let zengValue =Number(Number((document.getElementById("zeng").value)).toFixed(4));
+
+                //锻件增量后的重量
+               //console.log(duanM);
+                let zengDuan = Number((duanM * (1 + zengValue)).toFixed(1));
+
+                document.getElementById("DuanObj").textContent = zengDuan;
+
+                //锻件增量后的下料重量
+                let zengXia = Number((zengDuan * 1.06).toFixed(1));
+                document.getElementById("XiaObj").textContent = zengXia;
+
+                //锻件增量后的消耗重量
+                let zengXiao = Number((zengXia * 1.03).toFixed(1));
+                document.getElementById("XiaoObj").textContent = zengXiao;
+
+                //锻件增量后的料芯重量
+                let zengLiao = Number((zengDuan * 0.03).toFixed(1));
+                document.getElementById("LiaoObj").textContent = zengLiao;
+
+            }
+
+            function doZhi() {
+
+            	let D=Number(document.getElementById("D").value);
+            	let d=Number(document.getElementById("d").value);
+            	let H=Number(document.getElementById("H").value);
+
+            	let result=Number(((D*D-d*d)*H*0.001*0.00617).toFixed(12));
+
+            	let duanM=Number(result.toFixed(1));
+
+            	let xiaM=Number((result*1.06).toFixed(12)).toFixed(1);
+            	let xiaoM=Number((result*(1.06*1.03)).toFixed(12)).toFixed(1);
+            	let liaoM=(result*0.03).toFixed(1)
+
+            	document.getElementById("fduan").textContent=duanM;
+            	document.getElementById("fxia").textContent=xiaM;
+
+            	document.getElementById("fxiao").textContent=xiaoM;
+
+            	document.getElementById("fliao").textContent=liaoM;
+
+            	 //获取新增的数据
+                let zengValue =Number(Number((document.getElementById("Fzeng").value)).toFixed(4));
+
+            	let zengDuan = Number((duanM * (1 + zengValue)).toFixed(1));
+            	document.getElementById("Fduan").textContent=zengDuan;
+
+
+                //锻件增量后的下料重量
+                let zengXia = Number((zengDuan * 1.06).toFixed(1));
+                document.getElementById("Fxia").textContent = zengXia;
+
+                //锻件增量后的消耗重量
+                let zengXiao = Number((zengXia * 1.03).toFixed(1));
+                document.getElementById("Fxiao").textContent = zengXiao;
+
+                //锻件增量后的料芯重量
+                let zengLiao = Number((zengDuan * 0.03).toFixed(1));
+                document.getElementById("Fliao").textContent = zengLiao;
+  
+
+            }
+        </script>
+    </body>
+
+</html>
