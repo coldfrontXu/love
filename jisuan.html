@@ -27,7 +27,7 @@
 
     <body>
         <h1 style="text-align: center;">仿型和直圈计算</h1>
-        <h2>仿型计算</h2>
+        <h1>仿型计算</h1>
         <div id="fang">
             <div>
                 <span>体积：</span>
@@ -60,7 +60,7 @@
         </div>
         </div>
         
-        <h2>直圈计算</h2>
+        <h1>直圈计算</h1>
         <div id="zhi">
             <div>
                 <span>外径：</span>
@@ -98,6 +98,44 @@
                 <button style="margin: 30px;font-size: 30px" onclick="doZhi()">直圈计算</button>
                 <button style="margin: 30px;font-size: 30px" onclick="deleteZ()">清除数据</button>
             </div>
+        </div>
+         <h1>长度、直径算重量</h1>
+        <div>
+            <div>
+                <span>长度：</span>
+                <input type="text" id="L" placeholder="长度" >
+            </div>
+            <div>
+                <span>直径：</span>
+                <input type="text" id="Z" placeholder="直径" >
+            </div>
+
+             <div>
+                <span class="zhen">下料重量：</span><span id="m">10</span>
+            </div>
+             <div style="text-align: center;">
+                <button style="margin: 30px;font-size: 30px" onclick="deal()">重量计算</button>
+            </div>
+
+        </div>
+        <h1>重量、直径算长度</h1>
+        <div>
+            <div>
+                <span>重量：</span>
+                <input type="text" id="might" placeholder="长度" >
+            </div>
+            <div>
+                <span>直径：</span>
+                <input type="text" id="D_Long" placeholder="直径" >
+            </div>
+
+             <div>
+                <span class="zhen">下料长度：</span><span id="Long">10</span>
+            </div>
+             <div style="text-align: center;">
+                <button style="margin: 30px;font-size: 30px" onclick="deal_long()">重量计算</button>
+            </div>
+
         </div>
         <script>
             function doFang() {
@@ -141,30 +179,30 @@
 
             function doZhi() {
 
-            	let D=Number(document.getElementById("D").value);
-            	let d=Number(document.getElementById("d").value);
-            	let H=Number(document.getElementById("H").value);
+                let D=Number(document.getElementById("D").value);
+                let d=Number(document.getElementById("d").value);
+                let H=Number(document.getElementById("H").value);
 
-            	let result=Number(((D*D-d*d)*H*0.001*0.00617).toFixed(12));
+                let result=Number(((D*D-d*d)*H*0.001*0.00617).toFixed(12));
 
-            	let duanM=Number(result.toFixed(1));
+                let duanM=Number(result.toFixed(1));
 
-            	let xiaM=Number((result*1.06).toFixed(12)).toFixed(1);
-            	let xiaoM=Number((result*(1.06*1.03)).toFixed(12)).toFixed(1);
-            	let liaoM=(result*0.03).toFixed(1)
+                let xiaM=Number((result*1.06).toFixed(12)).toFixed(1);
+                let xiaoM=Number((result*(1.06*1.03)).toFixed(12)).toFixed(1);
+                let liaoM=(result*0.03).toFixed(1)
 
-            	document.getElementById("fduan").textContent=duanM;
-            	document.getElementById("fxia").textContent=xiaM;
+                document.getElementById("fduan").textContent=duanM;
+                document.getElementById("fxia").textContent=xiaM;
 
-            	document.getElementById("fxiao").textContent=xiaoM;
+                document.getElementById("fxiao").textContent=xiaoM;
 
-            	document.getElementById("fliao").textContent=liaoM;
+                document.getElementById("fliao").textContent=liaoM;
 
-            	 //获取新增的数据
+                 //获取新增的数据
                 let zengValue =Number(Number((document.getElementById("Fzeng").value)).toFixed(4));
 
-            	let zengDuan = Number((duanM * (1 + zengValue)).toFixed(1));
-            	document.getElementById("Fduan").textContent=zengDuan;
+                let zengDuan = Number((duanM * (1 + zengValue)).toFixed(1));
+                document.getElementById("Fduan").textContent=zengDuan;
 
 
                 //锻件增量后的下料重量
@@ -182,13 +220,26 @@
 
             }
             function deleteF(){
-                document.getElementById("V").value="";
-                
+                document.getElementById("V").value=""; 
             }
             function deleteZ(){
                 document.getElementById("D").value="";
                 document.getElementById("d").value="";
                 document.getElementById("H").value="";
+            }
+
+            function deal(){
+                let long=Number(document.getElementById("L").value);
+                let D=Number(document.getElementById("Z").value);
+                let result=((0.00617*long*D*D)/1000).toFixed(1);
+                document.getElementById("m").textContent=result;
+            }
+            function deal_long(){
+                let m=Number(document.getElementById("might").value);
+                let D=Number(document.getElementById("D_Long").value);
+
+                let result=((m/D/D/0.00617)*1000).toFixed(1);
+                document.getElementById("Long").textContent=result;
             }
         </script>
     </body>
