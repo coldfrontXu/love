@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>保持架计算</title>
+    </head>
+    <style>
+    *{
+       
+        padding: 0;
+        margin: 0;
+    }
+    div{
+        padding: 0;
+        margin: 0;
+        margin-top: 50px;
+    }
+    span{
+        font-weight:bold;
+        font-size: 1.5em;
+        margin: 25px;
+    }
+    input{
+        height: 45px;
+        width: 15%;
+        border: 1;
+        font-size: 1.5em;
+        font-weight:bold;
+    }
+    select {
+        margin-top: 15px;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    button{
+        margin-left: 15px;
+    }
+
+    </style>
+
+    <body>
+    <!--N-内圈 D-大直径  大外径!-->
+    <h1 style="text-align: center;">舍弗勒保持架</h1>
+    <select id="select" style="width:10%;height: 40px">
+      <option value="er">二合一</option>
+      <option value="dan">单件</option>
+    </select>
+    <span>内外径放量:</span> <input id="YL" type="text" placeholder="内外径放量"> <button onclick="back_d_D()" style="width: 10%;height: 45px">更新内外径余量</button>
+   <div>
+     <span>精加大外径 </span>
+     <input id="NJD" type="text" placeholder="精加工大外径">
+     <span>余量</span>
+     <input id="NY" type="text" placeholder="余量" >
+     <span>锻件大外径</span>
+     <span id="ND">0</span>
+   </div>
+<!--N-内圈 d-小直径  小外径!-->
+    <div >
+     <span>精加小外径 </span>
+     <input id="NJd" type="text" placeholder="精加工小外径">
+     <span >余量</span>
+     <input id="Ny" type="text" placeholder="余量">
+     <span>锻件小外径</span>
+     <span id="Nd">0</span>
+   </div>
+   <!--N-内圈 D-内大直径 内径 !-->
+   <div >
+     <span>精加大内径 </span>
+     <input id="NJd_S" type="text" placeholder="精加工大内径">
+     <span >余量</span>
+     <input id="Ny_S" type="text" placeholder="余量">
+     <span>锻件大内径 </span>
+     <span id="Nd_S">0</span>
+   </div>
+   
+   <div >
+     <span>精加小内径 </span>
+     <input id="NJd_S_S" type="text" placeholder="精加工小内径">
+     <span >余量</span>
+     <input id="Ny_S_S" type="text" placeholder="余量">
+     <span>锻件小内径 </span>
+     <span id="Nd_S_S">0</span>
+   </div>
+   <!--中挡边!-->
+    <div >
+     <span>精加外挡边</span>
+     <input id="NJd_S_S_S" type="text" placeholder="精加工中挡边">
+     <span >余量</span>
+     <input id="Ny_S_S_S" type="text" placeholder="余量">
+     <span>锻件中挡边</span>
+     <span id="Nd_S_S_S">0</span>
+   </div>
+
+      <!--小外径挡边!-->
+    <div >
+     <span>精加内挡边</span>
+     <input id="NJd_S_S_S_S" type="text" placeholder="精加工小挡边">
+     <span >余量</span>
+     <input id="Ny_S_S_S_S" type="text" placeholder="保持架减10个">
+     <span>锻件内挡边</span>
+     <span id="Nd_S_S_S_S">0</span>
+   </div>
+    <!--锻件高度!-->
+    <div >
+     <div >
+     <span>精内小挡边</span>
+     <input id="NJd_S_S_S_S_S" type="text" placeholder="精加工小挡边">
+     <span >余量</span>
+     <input id="Ny_S_S_S_S_S" type="text" placeholder="余量">
+     <span>锻件小挡边</span>
+     <span id="Nd_S_S_S_S_S">0</span>
+   </div>
+    <!--锻件高度!-->
+    <div >
+     <span>精加总高度</span>
+     <input id="NJd_S_S_S_S_S_S" type="text" placeholder="精加工总高度">
+     <span >余量</span>
+     <input id="Ny_S_S_S_S_S_S" type="text" placeholder="余量">
+     <span>锻件总高度</span>
+     <span id="Nd_S_S_S_S_S_S">0</span>
+   </div>
+
+    <div style="">
+        <button onclick="show()" style="width: 10%;height: 45px">计算数据</button>
+        <button onclick="delete_data()" style="width: 10%;height: 45px">清除数据</button>
+    </div>
+  
+<script>
+//计算外径和内径放量后的值
+function deal(a,b,c,d) {
+    if(d.includes("W")){
+        let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+        let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+        let ND=(NJD+NY).toFixed(1);
+        document.getElementById(c).textContent=ND; 
+    }
+    else{
+        let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+        let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+        let ND=(NJD-NY).toFixed(1);
+        document.getElementById(c).textContent=ND;
+    }
+   
+}
+//计算中挡边的长度
+function deal_dang(a,b,c){
+    //单件产品和合锻产品
+    if(document.getElementById("select").value.includes("er")){
+         let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD*2+14+NY).toFixed(1);
+         document.getElementById(c).textContent=ND;
+    }
+    else{
+        let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD+NY).toFixed(1);
+         document.getElementById(c).textContent=ND;
+    }
+}
+//计算精加内挡边
+function deal_dang_s(a,b,c){  //"NJd_S_S_S_S","Ny_S_S_S_S","Nd_S_S_S_S"
+
+    if(document.getElementById("select").value.includes("er")){
+         let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD*2+14-NY).toFixed(1);
+        document.getElementById(c).textContent=ND;
+    }
+    else{
+       
+         let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD-NY).toFixed(1);
+        document.getElementById(c).textContent=ND;
+    }
+
+}
+//计算小头内径挡边
+function deal_samll_h(a,b,c){
+        let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD+NY).toFixed(1);
+        document.getElementById(c).textContent=ND;
+}
+//计算单件或二合一高度
+function deal_height(a,b,c){
+       if(document.getElementById("select").value.includes("er")){
+         let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD*2+14+NY).toFixed(1);
+         document.getElementById(c).textContent=ND;
+    }
+    else{
+        let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+         let ND=(NJD+NY).toFixed(1);
+         document.getElementById(c).textContent=ND;
+    }
+
+}
+//更新处理函数
+function deal_d_D(a,b,c,d){
+    document.getElementById(a).value=document.getElementById("YL").value;
+    document.getElementById(b).value=document.getElementById("YL").value;
+    document.getElementById(c).value=document.getElementById("YL").value;
+    document.getElementById(d).value=document.getElementById("YL").value;
+}
+//点击更新内外径余量
+function back_d_D(){
+    deal_d_D("NY","Ny","Ny_S","Ny_S_S");
+}
+function show(){
+    deal("NJD","NY","ND","W"); //外径
+    deal("NJd","Ny","Nd","W"); //外径
+    deal("NJd_S","Ny_S","Nd_S","N"); //内径
+    deal("NJd_S_S","Ny_S_S","Nd_S_S","N"); //内径
+
+    deal_dang("NJd_S_S_S","Ny_S_S_S","Nd_S_S_S");//
+
+    deal_dang_s("NJd_S_S_S_S","Ny_S_S_S_S","Nd_S_S_S_S"); //精加内挡边
+
+    deal_samll_h("NJd_S_S_S_S_S","Ny_S_S_S_S_S","Nd_S_S_S_S_S");//精加小头台阶处
+
+
+    deal_height("NJd_S_S_S_S_S_S","Ny_S_S_S_S_S_S","Nd_S_S_S_S_S_S");
+}
+function delete_data(){
+    let obj=document.getElementsByTagName("input");
+    for(var key in obj){
+        obj[key].value="";
+    }
+}
+
+</script>
+
+    </body>
+
+</html>
