@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>碾环尺寸</title>
+    </head>
+    <style>
+    *{
+       
+        padding: 0;
+        margin: 0;
+    }
+    div{
+        padding: 0;
+        margin: 0;
+        margin-top: 60px;
+        text-align: center;
+    }
+    span{
+        font-weight:bold;
+        font-size: 1.5em;
+        margin: 25px;
+    }
+    input{
+        height: 45px;
+        width: 15%;
+        border: 1;
+        font-size: 1.5em;
+        font-weight:bold;
+    }
+    select {
+        margin-top: 15px;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    button{
+        margin-left: 15px;
+    }
+
+    </style>
+
+    <body>
+    <!--N-内圈 D-大直径  大外径!-->
+    <h1 style="text-align: center;">碾环尺寸计算</h1>
+    
+   <div>
+     <span>切料重量 </span>
+     <input id="NJD" type="text" placeholder="切料质量">
+    
+   </div>
+    <div >
+     <span>料圆直径</span>
+     <input id="NJd" type="text" placeholder="料圆直径">
+   
+   </div>
+   <!--N-内圈 D-内大直径 内径 !-->
+   <div >
+     <span>料圆长度</span>
+     <span id="NJd_S">0</span>
+  
+   </div>
+   
+   <div >
+     <span>长径比</span>
+     <span  id="NJd_S_S">0</span>
+   </div>
+   <!--中挡边!-->
+
+    <div style="">
+        <button onclick="deal()" style="width: 10%;height: 45px">计算数据</button>
+        <button onclick="delete_data()" style="width: 10%;height: 45px">清除数据</button>
+    </div>
+  
+<script>
+
+
+function deal_dang(a,b){
+        //切料重
+         let NJD=Number(Number(document.getElementById(a).value).toFixed(3));
+
+         let NY=Number(Number(document.getElementById(b).value).toFixed(3));
+
+         let length=NJD/NY/NY/0.00617*1000;
+
+         document.getElementById("NJd_S").textContent=length;
+         document.getElementById("NJd_S_S").textContent=(length/NY);
+       
+}
+function deal(){
+    deal_dang("NJD","NJd");
+}
+
+function delete_data(a,b,c){
+    document.getElementById(a).value="";
+    document.getElementById(b).value="";
+    document.getElementById(c).value="";
+
+}
+
+
+
+</script>
+
+    </body>
+
+</html>
