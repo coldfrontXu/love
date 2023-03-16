@@ -69,7 +69,7 @@
 
     <div style="">
         <button onclick="deal()" style="width: 10%;height: 45px">计算数据</button>
-        <button onclick="delete_data()" style="width: 10%;height: 45px">清除数据</button>
+        <button onclick="delete_data('NJD','NJd')" style="width: 10%;height: 45px">清除数据</button>
     </div>
   
 <script>
@@ -91,10 +91,10 @@ function deal(){
     deal_dang("NJD","NJd");
 }
 
-function delete_data(a,b,c){
+function delete_data(a,b){
     document.getElementById(a).value="";
     document.getElementById(b).value="";
-    document.getElementById(c).value="";
+   
 
 }
 
